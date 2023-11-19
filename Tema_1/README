@@ -1,0 +1,11 @@
+1. Análisis de tecnologías para aplicaciones en dispositivos móviles:
+      − Limitaciones que plantea la ejecución de aplicaciones en los dispositivos móviles: desconexión,
+      seguridad, memoria, consumo batería, almacenamiento.
+      − Entornos integrados de trabajo.
+      − Módulos para el desarrollo de aplicaciones móviles.
+      − Emuladores.
+      − Configuraciones. Tipos y características. Dispositivos soportados.
+      − Perfiles. Características. Arquitectura y requerimientos. Dispositivos soportados.
+      − Ciclo de vida de una aplicación: descubrimiento, instalación, ejecución, actualización y borrado.
+      − Modificación de aplicaciones existentes.
+      −Utilización del entorno de ejecución del administrador de aplicaciones.
