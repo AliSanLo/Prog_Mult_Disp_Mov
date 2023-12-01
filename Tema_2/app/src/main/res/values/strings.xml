@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Tema2</string>
+    <string-array name="Lista_marcas">
+        <item>Mercedes</item>
+        <item>Ford</item>
+        <item>Seat</item>
+        <item>Audi</item>
+    </string-array>
+</resources>
