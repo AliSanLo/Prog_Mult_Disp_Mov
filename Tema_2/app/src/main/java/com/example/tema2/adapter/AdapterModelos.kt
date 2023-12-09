@@ -1,15 +1,19 @@
 package com.example.tema2.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.tema2.Data.DataSet
 import com.example.tema2.R
 import com.example.tema2.model.Coche
+import com.example.tema2.model.DetailActivity
 
 //Entre <...> nos pide un objheto del tipo MyHolder(?), por eso le pasamos "AdapterModelos.ModeloHolder"
 //RecyclerView.Adapter<AdapterModelos.ModeloHolder>()  --> es una clase abstracta.
@@ -60,5 +64,16 @@ class AdapterModelos (var lista: ArrayList<Coche>, var contexto : Context) :Recy
         //cargamos la libreria Glide para poder sacar la imagen
         Glide.with(contexto).load(item.imagen).into(holder.imagenImageView)
 
+        //SI QUEREMOS GESTIONAR LAS PULSACIONES DE LOS RECYCLERVIEWS, LO HACEMOS ASI:
+    holder.imagenImageView.setOnClickListener({
+//PARA PASAR DE PAGINA AL PULSAR LA IMAGEN:
+        val intent = Intent(contexto, DetailActivity::class.java)
+        intent.putExtra("coche", DataSet.getAllModelos()[position]) // el profesor pone aqui
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) /*si no añadimos esta linea no funciona, porque realmente no cambiamos de pantalla
+         desde una pantalla, sino desde el adaptador. El adaptador tendra qeu comunicarse con la pantalla y  la pantalla arrancará*/
+        contexto.startActivity(intent)   //ESTE "intent"NO HAY QUE HACERLO MEDIANTE EL ADAPTADOR, SINO MEDIANTE EL CONTEXTO
+
+
+    })
     }
 }

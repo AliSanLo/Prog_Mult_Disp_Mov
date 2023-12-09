@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.tema2.Data.DataSet
 import com.example.tema2.R
 import com.example.tema2.adapter.AdapterModelos
@@ -18,8 +20,6 @@ class SecondActivity : AppCompatActivity() {
 
     //PRIMERO: el binding. HAY QUE HACERLO SIEMPRE
     private lateinit var binding: ActivitySecondBinding
-    //parte de datos de mi lista
-
 
     //PARTE DE DATOS DE MI LISTA
     //entre los <...> añadimos el tipo de los elementos de la lista
@@ -38,63 +38,21 @@ class SecondActivity : AppCompatActivity() {
 
 
 
-
-
-
-        //Declaramos el arraylist
-        val listaCoches: ArrayList<Coche> = ArrayList();
-        //inicializamos la lista
-        listaCoches.add(
-            Coche(
-                "Mondeo",
-                "Ford",
-                5454,
-                150,
-                "https://www.diariomotor.com/imagenes/2012/10/fordvignale_mondeo_4door_01.jpg"
-            )
-        )
-        listaCoches.add(
-            Coche(
-                "Focus",
-                "Ford",
-                46534,
-                64565,
-                "https://www.autonocion.com/wp-content/uploads/2021/11/ford_focus_st_970.jpeg"
-            )
-        )
-        listaCoches.add(
-            Coche(
-                "Ibiza",
-                "Mercedes",
-                10000,
-                564,
-                "https://s1.eestatic.com/2021/07/21/motor/598203379_195864785_1706x960.jpg"
-            )
-        )
-        listaCoches.add(
-            Coche(
-                "Leon",
-                "Opel",
-                34340,
-                56,
-                "https://static.motor.es/fotos-noticias/2012/02/seat-leon-cupra-r-y-leon-cupra_4.jpg"
-            )
-        )
-        listaCoches.add(
-            Coche(
-                "Fiesta",
-                "Mercedes",
-                457735,
-                5456,
-                "https://hips.hearstapps.com/es.h-cdn.co/cades/contenidos/13225/fordfiesta201301.jpg"
-            )
-        )
-
-
         //ADAPTADOR PARA QUE LA LISTA PUEDA SALIR POR PATNALLA: Entre parentesis: contexto (ctx), layout, lista de datos a mostrar
         //DEJAMOS DE UTILIZARLO -> adaptadorLista = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, DataSet.getAllModelos());
         //DEJAMOS DE UTILIZARLO -> adaptadorLista = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, DataSet.getAllModelos());
-adapterModelos = AdapterModelos()
+
+        //lo primero que pasamos por constructor es la lista y el contexto. La lista la sacamos de DataSet.
+        //Con respecto al contexto, si queremos utilizar interfaces de callback "applicationContext" es "demasiado bestia". Entonces deberiamos pasarle "this", mas simple y efectivo.
+adapterModelos = AdapterModelos(DataSet.getAllModelos(), applicationContext)
+        //le asociamos los datos
+        binding.recyclerModelos.adapter= adapterModelos
+        binding.recyclerModelos.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)//linear, gridLayout o que lo muestre en un numerod e columnas determinado, o staggered
+
+
+
+
+
 
        // LA SIGUIENTE LINEA FUNCIONA CON LISTVIEW, PERO NO CON RECYCLER VIEW
         //  binding.listViewModelos.adapter = adaptadorLista;
@@ -132,8 +90,12 @@ adapterModelos = AdapterModelos()
                 //lo siguiente es un iterable que se convierte en un ArrayList de tipo Coche
                 val listaFiltrada = DataSet.getAllModelos()
                     .filter { it.marca.equals(marcaSeleccionada, true) } as ArrayList<Coche>
-                adaptadorLista.clear()
-                adaptadorLista.addAll(listaFiltrada)
+
+                //YA NO SIRVE
+               // adaptadorLista.clear()
+                //adaptadorLista.addAll(listaFiltrada)
+
+
                 //vanmos al padre, que ha generado el evento, seleccionamos su parte de datos, el adapter y
                 //de ahi escoge el que esta en una posicion concreta. (no se por qué no lo usa y lo comenta):
                 /* parent?.adapter?.getItem(position).toString()
@@ -174,6 +136,8 @@ adapterModelos = AdapterModelos()
         }*/
 
 */
+
+
     }
 
     override fun onStart() {
