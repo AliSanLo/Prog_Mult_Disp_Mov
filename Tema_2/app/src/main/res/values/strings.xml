@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Tema2</string>
-    <string name="mensaje">El precio del coche es: </string>
     <string-array name="Lista_marcas">
         <item>Mercedes</item>
         <item>Ford</item>
