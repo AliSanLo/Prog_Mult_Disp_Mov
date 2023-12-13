@@ -1,20 +1,17 @@
 package com.example.tema2.model
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.Data
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
-import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tema2.Data.DataSet
-import com.example.tema2.R
 import com.example.tema2.adapter.AdapterModelos
+import com.example.tema2.dataBase.DBHelper
+import com.example.tema2.dataBase.SchemaDB
 import com.example.tema2.databinding.ActivitySecondBinding
-import com.google.android.material.snackbar.Snackbar
 
 class SecondActivity : AppCompatActivity() {
 
@@ -27,6 +24,7 @@ class SecondActivity : AppCompatActivity() {
     //entre los <...> añadimos el tipo de los elementos de la lista
     private lateinit var adaptadorLista: ArrayAdapter<Coche>
     private lateinit var adapterModelos: AdapterModelos
+    private lateinit var openHelper: DBHelper;
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +34,10 @@ class SecondActivity : AppCompatActivity() {
         //tercero: setteo el binding dentro de la parte grafica
         setContentView(binding.root)
 
+
+        openHelper = DBHelper(applicationContext, SchemaDB.DB_NAME, 1)
+
+
 //AL TRABAJAR ON UN RECYCLER vIEW NECESITAMOS UN ADAPTADOR
 //ADAPTADOR PARA QUE LA LISTA PUEDA SALIR POR PATNALLA: Entre parentesis: contexto (ctx), layout, lista de datos a mostrar
         //DEJAMOS DE UTILIZARLO -> adaptadorLista = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, DataSet.getAllModelos());
@@ -44,19 +46,15 @@ class SecondActivity : AppCompatActivity() {
         //Con respecto al contexto, si queremos utilizar interfaces de callback "applicationContext" es "demasiado bestia". Entonces deberiamos pasarle "this", mas simple y efectivo.
         //ADAPTADOR PARA QUE LA LISTA PUEDA SALIR POR PATNALLA: Entre parentesis: contexto (ctx), layout, lista de datos a mostrar.
         //Primero se crea el adaptador
-        adapterModelos = AdapterModelos(DataSet.getAllModelos(), applicationContext)
+        //PRIMERO ESCRIB8IOS ESTO PERO SE CAMBIO POR LA LINEA DE DEBAJO -> adapterModelos = AdapterModelos(DataSet.getAllModelos(), applicationContext)
+        adapterModelos = AdapterModelos(openHelper.getCoches(), applicationContext)
         //luego se le pasan los datos
         binding.recyclerModelos.adapter =
             adapterModelos // asocia l aparte grafica con la parte de datos
         //al se recycler view tenemos que decirle coo se gestiona el espaio internamente
-        binding.recyclerModelos.layoutManager = LinearLayoutManager (applicationContext, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerModelos.layoutManager =
+            LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
         //linear, gridLayout o que lo muestre en un numerod e columnas determinado, o staggered
-
-
-
-
-
-
 
 
 // LA SIGUIENTE LINEA FUNCIONA CON LISTVIEW, PERO NO CON RECYCLER VIEW
@@ -88,12 +86,8 @@ class SecondActivity : AppCompatActivity() {
                 //id asociado en la posicion pulsada. Efectivo sobre todo si trabajamos cno base de datos
                 id: Long
             ) {
-                Snackbar.make(
-                    binding.root,
-                    binding.spinnerMarcas.selectedItem.toString(),
-                    Snackbar.LENGTH_SHORT
-                )
-                    .show()
+                /*  Snackbar.make(binding.root, binding.spinnerMarcas.selectedItem.toString(),Snackbar.LENGTH_SHORT).show() */
+                openHelper.agregarCoche(Coche("nuevo", "marca", 200, 20000, ""))
 
                 val marcaSeleccionada = parent!!.adapter.getItem(position).toString()
                 //lo siguiente es un iterable que se convierte en un ArrayList de tipo Coche
