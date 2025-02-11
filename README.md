@@ -1,8 +1,7 @@
 # Prog_Mult_Disp_Mov
 CONTENIDOS
 1. Análisis de tecnologías para aplicaciones en dispositivos móviles:
-        − Limitaciones que plantea la ejecución de aplicaciones en los dispositivos móviles: desconexión,
-        seguridad, memoria, consumo batería, almacenamiento.
+        − Limitaciones que plantea la ejecución de aplicaciones en los dispositivos móviles: desconexión, seguridad, memoria, consumo batería, almacenamiento.
         − Entornos integrados de trabajo.
         − Módulos para el desarrollo de aplicaciones móviles.
         − Emuladores.
@@ -35,19 +34,7 @@ CONTENIDOS
         − Datos basados en el tiempo.
         − Procesamiento de objetos multimedia. Clases. Estados, métodos y eventos.
         − Reproducción de objetos multimedia. Clases. Estados, métodos y eventos.
-   
-4. Análisis de motores de juegos:
-        −Animación 2D y D.
-        −Arquitectura del juego. Componentes.
-        − Motores de juegos: Tipos y utilización.
-        −Áreas de especialización, librerías utilizadas y lenguajes de programación.
-        − Componentes de un motor de juegos.
-        − Librerías que proporcionan las funciones básicas de un Motor 2D/3D.
-        −APIs gráficos 3D.
-        − Estudio de juegos existentes.
-        −Aplicación de modificaciones sobre juegos existentes.
-   
-5. Desarrollo de juegos 2D y 3D:
+    y 3D:
         − Entornos de desarrollo para juegos.
         − Integración del motor de juegos en entornos de desarrollo.
         − Conceptos avanzados de programación 3D.
