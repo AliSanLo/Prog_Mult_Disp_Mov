@@ -35,3 +35,38 @@ CONTENIDOS
    - Procesamiento de objetos multimedia. Clases. Estados, métodos y eventos.
    - Reproducción de objetos multimedia. Clases. Estados, métodos y eventos.
     
+
+1. Analysis of Technologies for Mobile Applications
+- Limitations of running applications on mobile devices:
+     - Disconnection, security, memory, battery consumption, storage
+- Integrated development environments
+- Modules for mobile application development
+- Emulators
+- Configurations: types, characteristics, and supported devices
+- Profiles: characteristics, architecture, requirements, and supported devices
+- Application lifecycle: discovery, installation, execution, update, and deletion
+- Modifying existing applications
+- Using the application manager runtime environment
+  
+2. Mobile Application Programming
+- Development tools and phases
+- User interfaces and associated classes
+- Graphic context and images
+- Keyboard event handling
+- Animation and sound techniques
+- Service discovery
+- Databases and storage
+- Data persistence
+- Threading model
+- Communications: associated classes and connection types
+- Wireless communication management
+- Sending and receiving multimedia messages: content synchronization, security, and permissions
+- Handling HTTP and HTTPS connections
+  
+3. Using Integrated Multimedia Libraries
+- Multimedia application concepts
+- API architecture
+- Multimedia data sources and related classes
+- Time-based data
+- Multimedia object processing: classes, states, methods, and events
+- Multimedia playback: classes, states, methods, and events
